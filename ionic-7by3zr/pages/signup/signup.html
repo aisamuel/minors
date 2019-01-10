@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-navbar color = 'primary'>
+      <ion-title >Sign Up</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content >
+  <ion-card>
+    <ion-label *ngIf="auto.err" text-wrap color=red color="danger" padding>
+    {{ auto.err }}
+    </ion-label>
+<ion-label *ngIf="auto.alerts" text-wrap color=red color="secondary" padding>
+    {{ auto.alerts }}
+    </ion-label>
+<form [formGroup] = "signup" (ngSubmit) = "create()">
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" formControlName="email" ></ion-input>
+    </ion-item>
+
+    <ion-item >
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" formControlName="password" ></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+
+<div padding >
+      <button ion-button type = "submit" color="primary" block (click) = "presentLoading()">Create Account</button>
+    </div>
+
+</form>
+  </ion-card>>
+</ion-content>

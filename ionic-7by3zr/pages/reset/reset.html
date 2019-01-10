@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-navbar color = 'primary'>
+      <ion-title >Reset Password</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding="40px">
+  <ion-card>
+    <ion-label *ngIf="auto.err" text-wrap color=red color="danger" padding>
+    {{ auto.err }}
+    </ion-label>
+<ion-label *ngIf="auto.alerts" text-wrap color=red color="secondary" padding>
+    {{ auto.alerts }}
+    </ion-label>
+  <ion-item>
+    <ion-label>Email Address</ion-label>
+    <ion-input #email type="text"></ion-input>
+  </ion-item>
+
+  <div padding>
+      <button ion-button type = "submit" color="primary" block (click)="reset(email.value)">Reset Password</button>
+    </div>
+  </ion-card>
+</ion-content>

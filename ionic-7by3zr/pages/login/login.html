@@ -1,0 +1,96 @@
+<ion-content *ngIf="auto.afAuth.user | async as user; else showLogin" >
+  <ion-header>
+    <ion-navbar color = 'primary'>
+      <ion-title >Welcome</ion-title>
+    </ion-navbar>
+</ion-header>
+
+  <ion-content padding="250px" margin-top="150px" >
+    
+    <ion-card  margin-top="150px">
+      <ion-card-header color = "primary">
+   You are welcome
+      </ion-card-header>
+      <ion-item>
+          <ion-avatar item-top item-left>
+      
+      <img src = "{{ user.photoURL }}" alt = "photo" title = "myphoto" >
+      
+      </ion-avatar>
+ 
+      <h2 text-uppercase><b> {{ user.displayName }}</b></h2>
+      
+      </ion-item>
+      
+      <ion-grid>
+        <ion-row justify-content-center>
+        <button ion-button (click)="QuestionsAndLoading()">Take Test</button>
+        </ion-row>
+        <ion-row justify-content-center>
+        <button ion-button (click)="logOutAndLoading()">Logout</button>
+        </ion-row>
+      </ion-grid>
+      
+    </ion-card>
+  </ion-content>
+</ion-content>
+  
+    <ng-template #showLogin>
+      
+    
+ <ion-header>
+    <ion-navbar color = 'primary'>
+      <ion-title >Log In</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+
+<ion-content class="buttoncls" margin-top="150px">
+  <ion-card padding = "250px" margin-top="150px">
+    
+
+<!--<span *ngIf="err" >{{ err }}</span>-->
+<ion-label *ngIf="auto.err" text-wrap color=red color="danger" padding>
+    {{ auto.err }}
+    </ion-label>
+<ion-label *ngIf="auto.alerts" text-wrap color=red color="secondary" padding>
+    {{ auto.alerts }}
+    </ion-label>
+<form [formGroup] = "logins" (ngSubmit) = "login()">
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" formControlName="email" ></ion-input>
+    </ion-item>
+
+    <ion-item padding>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" formControlName="password" ></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+
+<div padding padding-top = "80px">
+      <button ion-button  type = "submit" color="primary" block (click) = "presentLoading()" >Log In</button>
+    </div>
+<ion-grid>
+  <ion-row justify-content-center>
+    <ion-col>
+    <button ion-button small color = 'light' (click) = "SignUpAndLoading()" clear text-capitalize><span    ion-text color = 'primary' >Don't have an account?</span></button>
+    </ion-col>
+    <ion-col>
+    <button ion-button small color = 'light' (click) = "ResetAndLoading()" clear text-capitalize><span ion-text color = 'primary' >Forget Password?</span></button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+</form>
+  </ion-card>
+
+
+
+</ion-content>
+</ng-template>
